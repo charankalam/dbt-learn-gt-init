@@ -1,5 +1,7 @@
 sources:
   - name: jaffle_shop
+    database: raw
+    schema: jaffle_shop 
     description: "{{doc('order_status')}} "
     tables:
       - name: customers
@@ -16,3 +18,5 @@ sources:
           freshness:
             warn_after: {count: 24, period: hour}
             error_after: {count: 48, period: hour}
+
+
