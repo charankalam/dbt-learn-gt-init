@@ -1,10 +1,16 @@
 sources:
   - name: jaffle_shop
-    database: raw
-    schema: jaffle_shop
+    description: "{{doc('order_status')}} "
     tables:
       - name: customers
+        description: "Table containing customer information"
+        config:
+          loaded_at_field: _etl_loaded_at
+          freshness:
+            warn_after: {count: 24, period: hour}
+            error_after: {count: 48, period: hour}
       - name: orders
+        description: "Table containing order information"
         config:
           loaded_at_field: _etl_loaded_at
           freshness:

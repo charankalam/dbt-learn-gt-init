@@ -1,0 +1,38 @@
+models:
+  - name: stage_customers
+    description: "Staging model for customers"
+    columns:
+      - name: customer_id
+        description: "Unique identifier for each customer"
+        tests:
+          - not_null
+          - unique
+
+  - name: stage_orders
+    description: "Staging model for orders"
+    columns:
+      - name: order_id
+        description: "Unique identifier for each order"
+        tests:
+          - not_null
+          - unique
+      - name: status
+        tests:
+          - accepted_values:
+              arguments:
+                values:
+                  - completed
+                  - shipped
+                  - returned
+                  - placed
+                  - return_pending
+      - name: customer_id
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('stage_customers')
+                field: customer_id
+  
+          
+      
+  
